@@ -10,7 +10,7 @@ router.get("/:wallet", async (req, res) => {
     // const { wallet} = req.body;
     const { wallet } = req.params;
 
-    console.log("wallet", wallet, req.params)
+    console.log("wallet", wallet, wallet.toLocaleLowerCase())
 
     if (!wallet) {
       return res.send({
@@ -20,7 +20,7 @@ router.get("/:wallet", async (req, res) => {
     }
 
     //1. Find if any account with that email exists in DB
-    const user = await Task.findOne({walletAddress:wallet });
+    const user = await Task.findOne({walletAddress:wallet.toLocaleLowerCase() });
 
     console.log ("user", user)
 
